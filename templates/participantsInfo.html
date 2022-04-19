@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang ="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Personal Information</title>
+		<meta charset="utf-8" name="viewport" 
+        content= "width=device-width, initial-scale=1.0"> 
+		<link rel="stylesheet" type="text/css" href="../css/home.css">
+		<script src="../js/wwtbam.js"></script>
+	</head>
+	<body class="participantFormBody">
+		<div class="participantForm">
+			<h1 class="participantFormHeading">Please tell us about yourself.</h1>
+
+			<aside class="error-cont hidden" id="errorCont">
+				<img src="../images/error-logo.png" height="30" width="36">
+				<p id="errorMsg" class="error-msg"></p>
+			</aside>
+			
+			<form  name="personalInfo" method="post" action="startGame.html">
+				<fieldset class="personal-details visible" id="personalDetails">
+					<legend> Personal Details </legend>
+					<div class="avatar-cont">
+						<h3 class="avatar-head"> Choose your avatar first: </h3>
+						<ul class="avatar-list">
+							<li>
+								<button type="button" class="iron-man" value="iron-man" onClick="setAvatarInfo(this)"> </button>
+							</li>
+							<li>
+								<button type="button" class="hulk" value="hulk" onClick="setAvatarInfo(this)"> </button>
+							</li>
+							<li>
+								<button type="button" class="black-widow" value="black-widow" onClick="setAvatarInfo(this)"> </button>
+							</li>
+							<li>
+								<button type="button" class="black-panther" value="black-panther" onClick="setAvatarInfo(this)"> </button>
+							</li>
+							<li>
+								<button type="button" class="captain-america" value="captain-america" onClick="setAvatarInfo(this)"> </button>
+							</li>
+							<li>
+								<button type="button" class="doctor-strange" value="doctor-strange" onClick="setAvatarInfo(this)"> </button>
+							</li>
+						</ul>
+					</div>
+
+					<div class="name-cont">
+						<input type="text" id="fname" name="fname" value="" placeholder="First Name" required minlength="4" maxlength="15"><br>
+					</div>
+					<div class="name-cont">
+						<input type="text" id="lname" name="lname" value="" required placeholder="Last Name" minlength="4" maxlength="15"><br>
+					</div>
+					<div class="gender">
+						<legend>Please select your gender</legend>
+						<div class="nameCont">
+							<div>
+								<input type="radio" id="male" name="gender" value="male">
+								<label for="male">Male</label>
+							</div>
+							<div>
+								<input type="radio" id="female" name="gender" value="female">
+								<label for="female">Female</label>
+							</div>
+							<div>
+								<input type="radio" id="other" name="gender" value="other">
+								<label for="other">Other</label><br>
+							</div>
+						</div>
+					</div>
+					<div class="dob">
+						<legend> Please enter your Date of Birth </legend>
+						<input type="date" placeholder="Date of Birth" id="dob" name="dob" required>
+					</div>
+				</fieldset>
+
+				<fieldset class="screenHidden contact" id="contact">
+					<legend> How can we reach you? </legend>
+						<div class="name-cont">
+							<input type="tel" id="primaryPhone" maxlength="12" placeholder="Phone: XXX-XXX-XXXX" name="primaryPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+						</div>
+
+						<div class="name-cont">
+							<input type="tel" id="friendPhone" maxlength="12" placeholder="Phone a friend: XXX-XXX-XXXX" name="friendPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+						</div>
+
+						<div class="name-cont">
+							<input type="email" id="email" maxlength="30" placeholder="Email: someone@example.com" name="email" required >
+						</div>
+				</fieldset>
+				
+		      <fieldset class="screenHidden address" id="address">
+						<legend> Please enter your Address </legend>
+						<div class="name-cont">
+							<input type="text" id="addr1" maxlength="100" placeholder="Address Line 1" name="addr1" value="" required>
+						</div>
+
+						<div class="name-cont">
+							<input type="text" id="addr2" maxlength="100" placeholder="Address Line 2" name="addr2" value="">
+						</div>
+
+						<div class="name-cont">
+							<input type="text" id="city" name="city"  maxlength="16" placeholder="City" value="" required>
+						</div>
+
+						<div class="name-cont">
+							<input type="text" list="state" id="stateVal" name="state" placeholder="State">
+							<datalist id="state">
+								<option value="AL"> 
+								<option value="AK">
+								<option value="AZ"> 
+								<option value="AR">
+								<option value="CA"> 
+								<option value="CO">
+								<option value="CT"> 
+								<option value="DE">
+								<option value="FL"> 
+								<option value="GA">
+								<option value="HI"> 
+								<option value="ID">
+								<option value="IL"> 
+								<option value="IN">
+								<option value="IA"> 
+								<option value="KS">
+								<option value="KY"> 
+								<option value="LA">
+								<option value="ME"> 
+								<option value="MD">
+								<option value="MA"> 
+								<option value="MI">
+								<option value="MN"> 
+								<option value="MS">
+								<option value="MO"> 
+								<option value="MT">
+								<option value="NE"> 
+								<option value="NV">
+								<option value="NH"> 
+								<option value="NJ">
+								<option value="NM"> 
+								<option value="NY">
+								<option value="NC"> 
+								<option value="ND">
+								<option value="OH"> 
+								<option value="OK">
+								<option value="OR"> 
+								<option value="PA">
+								<option value="RI"> 
+								<option value="SC">
+								<option value="SD"> 
+								<option value="TN">
+								<option value="TX"> 
+								<option value="UT">
+								<option value="VT"> 
+								<option value="VA">
+								<option value="WA"> 
+								<option value="WV">
+								<option value="WI">
+								<option value="WY"> 
+							</datalist>
+						</div>          
+		    <div class="name-cont">
+					<input id="zip" name="zip" placeholder="Zip" maxlength="5" type="text" pattern="[0-9]*">
+		    </div>
+		  </fieldset>
+		 		<div class="footerSection hidden" id="startGameCont">
+		 			<button type="submit" class="primaryNavBtn participantInfoBtn visHidden" id="startGame"><span>Start Game</span></button>
+		 		</div>	
+			</form>
+			<button type="button" class="arrow-back visible" onclick="validateSwitchForm()">
+				<svg xmlns="https://www.w3.org/2000/svg" width="69" height="54" viewBox="0 0 23 18">
+					<path fill="#FFFFFF" class="arrow-path" fill-rule="evenodd"
+						d="M21.7131495,8.30441922 L22.8392418,8.86746538 L21.7176501,9.42826122 L21.8216762,9.53228733 L14.0757875,17.278176 C13.4779181,17.8760455 12.5128049,17.8802703 11.9108381,17.2783035 C11.313039,16.6805044 11.3156571,15.7086626 11.9109656,15.113354 L16.6568542,10.3674654 L1.49116761,10.3674654 C0.667618478,10.3674654 0,9.70166814 0,8.86746538 C0,8.03903825 0.67145511,7.36746538 1.49116761,7.36746538 L16.6636052,7.36746538 L11.9109656,2.61482579 C11.3156571,2.01951728 11.313039,1.04767543 11.9108381,0.449876354 C12.5128049,-0.152090468 13.4779181,-0.147865648 14.0757875,0.450003834 L21.8216762,8.1958925 L21.7131495,8.30441922 Z">
+					</path>
+				</svg>
+			</button>
+		</div>
+	</body>
+	</html>
