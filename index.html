@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Millionaire Home</title>
+    <meta
+      charset="utf-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/home.css" />
+    <link rel="stylesheet" type="text/css" href="./css/modal.css" />
+    <script src="./js/wwtbam.js"></script>
+  </head>
+
+  <body>
+    <!-- Game button -->
+    <div class="animated-btn-cont">
+      <button
+        type="button"
+        id="startGame"
+        class="animation-button"
+        onclick="playBackgroundMusic()"
+      >
+        Start Game
+      </button>
+    </div>
+
+    <div class="gameOver" id="gameOverCont">
+      <img src="./images/game-over.gif" height="700" width="1200" />
+    </div>
+    <!-- Terms and conditions modal box -->
+    <div class="modal" id="modal">
+      <div class="header">
+        <h1 class="title">Terms and Conditions of the Game</h1>
+        <button class="modal-close" onclick="hideModal()"></button>
+      </div>
+      <div class="modal-content">
+        <ol>
+          <li>For each question amount will be awareded to the player</li>
+          <li>
+            Every player will have three lifelines Phone a friend, audience poll
+            and 50-50
+          </li>
+          <li>
+            After every milestone reached player will be assured a certain
+            amount of money
+          </li>
+          <li>
+            The player can choose to walkout the game any time with the amount
+            he has won
+          </li>
+          <li>
+            If he answers a question wrong he will win the milestone amount only
+          </li>
+          <li>
+            If the participant agrees by clicking the "Accept" button he will be
+            taken to the participant info page.
+          </li>
+          <li>
+            If the participant declines the terms and conditions above he the
+            game will stop.
+          </li>
+        </ol>
+      </div>
+      <footer class="modal-footer">
+        <button class="accept modal-btn" onclick="navigateToParticipantInfo()">
+          Accept
+        </button>
+        <button class="decline modal-btn" onclick="declineGame()">
+          Decline
+        </button>
+      </footer>
+    </div>
+
+    <!-- Logo and other content -->
+    <div class="home-bg">
+      <div class="audio-cont">
+        <audio
+          id="kbc_music"
+          src="./media/Who Wants To Be A Millionaire.mp3"
+          controls
+        ></audio>
+      </div>
+      <div class="logo-cont" id="logoCont">
+        <img src="./images/rot-logo.gif" />
+      </div>
+
+      <!-- 		<a href="./templates/participantsInfo.html">
+			<button type="button" class="primaryNavBtn"><span>Continue</span></button>
+		</a> -->
+    </div>
+  </body>
+</html>
