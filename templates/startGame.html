@@ -1,0 +1,190 @@
+	<!DOCTYPE html>
+<html lang ="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Game</title>
+		<meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+		<link rel="stylesheet" type="text/css" href="../css/home.css">
+		<link rel="stylesheet" type="text/css" href="../css/game.css">
+		<link rel="stylesheet" type="text/css" href="../css/chart.css">
+		<link rel="stylesheet" type="text/css" href="../css/modal.css">
+		<script src="../js/canvasjs.min.js"></script>
+		<script src="../js/questions.js"></script>
+		<script src="../js/answers.js"></script>
+		<script src="../js/audienceChart.js"></script>
+		<script src="../js/wwtbam.js"></script>
+	</head>
+	<body onload="initializeGame()">
+		<div id="rewardsModal" class="rewards-modal modal">
+			<!-- <button class="modal-close" onclick="hideModal()"> </button> -->
+			<div> <img src="../images/congrats.png" alt="congrats" height="100" width="500"> </div>
+			<h2 id="rewardsHeader"> </h2>
+			<button id="collectRewards" class="rewards-collect hidden animation-button" onclick="showCollectRewardsModal()"> Collect Rewards </button>
+		</div>
+
+		<div id="exitModal" class="exit-modal modal">
+			<!-- <button class="modal-close" onclick="hideModal()"> </button> -->
+			<div id=""> <img src="../images/sorry.gif" alt="congrats" height="300" width="300"> </div>
+			<h2 id="exitHeader"> </h2>
+		</div>
+
+		<div id="collectRewardsModal" class="modal">
+			<h2> Collect Rewards </h2>
+			<form id="collectRewardsForm" name="collectRewardsForm" action="databaseUpdate.php" method = "POST">
+				<div>
+					<span>
+						First Name:
+					</span>
+					<span id="submitFname">
+	
+					</span>
+				</div>
+				<div>
+					<span>
+						Last Name:
+					</span>
+					<span id="submitLname">
+	
+					</span>
+				</div>
+				<div>
+					<span>
+						Phone Number:
+					</span>
+					<span id="submitPhone">
+	
+					</span>
+				</div>
+				<div>
+					<span>
+						Amount Won:
+					</span>
+					<span id="submitAmount">
+	
+					</span>
+				</div>
+				<input type="hidden" id="hidFname" name="firstName"/>
+				<input type="hidden" id="hidLname" name="lastName"/>
+				<input type="hidden" id="hidPhone" name="priPhNum"/>
+				<input type="hidden" id="hidAmount" name="prizeAmt"/>
+				<input type="submit" class="claim-rewards animation-button" value="Claim Amount" />
+			</form>
+		</div>
+
+		<div class="audience-poll-modal" id="audiencePollCont">
+			<button class="modal-close audience-modal-close" onclick="removeChart()">
+			</button>
+			<section id="audienceChart">
+			</section>
+		</div>
+		<div class="gameBackground">
+			<div class="audio-cont">
+				<audio id="wrong_answer" src="../media/Wrong Answer.mp3" controls></audio>
+			</div>
+			<div>
+				<h1 id="byeUser">
+
+				</h1>
+			</div>
+			<div class="audio-cont">
+				<audio id="right_answer" src="../media/Small-crowd-cheering-whistling-and-clapping.mp3" controls></audio>
+			</div>
+			<div class="leftPanel" id="leftPanel">
+				<div class="leaveGame">
+					<a href="#" onclick="exitGame()"> 
+						<img src="../images/exitGame.png" height="40px" width="40px" alt="end game">
+					</a>
+				</div>
+				<ul class="lifelines-mob">
+					<li class="lifeline-icon">
+						<a href="#" onclick="handleFiftyFifty()">
+							<img src="../images/Classic5050.png" id="fiftyFiftyMob" height="50" width="50" alt="facebook">
+						</a>
+					</li>
+					<li class="lifeline-icon">
+						<a href="" onclick="handlePhoneFrnd()" id="phoneLinkMob"></a>
+							<img src="../images/phoneAFrndIcon.png" height="50" width="50" alt="facebook">
+						</a>
+					</li>
+					<li class="lifeline-icon">
+						<a href="underConstruction.html">
+							<img src="../images/AudiencePoll.png" height="50" width="50" alt="facebook">
+						</a>
+					</li>
+				</ul>
+				<div class="gameIcon">
+					<img src="../images/logoTrans.png" height="200px" width="200px" alt= "game">
+				</div>
+
+				<div class="question-boxCont">
+					<div class="question-box" id="questionBox">
+						<p class="questionText" id="questionBoxInner">
+							
+						</p>
+					</div>
+				</div>
+				<div class="answerBox" id="allAnswers">
+					<div class="row">
+						<button class="answer-box" value="" onClick="checkAnswer(this)" id="option0">
+							
+						</button>
+						<button class="answer-box right-ans" value="" onClick="checkAnswer(this)" id="option1">
+							
+						</button>
+					</div>
+					<div class="row">
+						<button class="answer-box" value="" onClick="checkAnswer(this)" id="option2">
+							
+						</button>
+						<button class="answer-box right-ans" value=""  onClick="checkAnswer(this)" id="option3">
+							
+						</button>
+					</div>
+					</div>
+				</div>
+			<div class="rightPanel" id="rightPanel">
+				<div class="player-name-cont">
+					<button id="player-avatar"></button> <span id="playerName" class="player-name"> </span> 
+				</div>
+				<ul class="lifelines">
+					<li class="lifeline-icon">
+						<a href="#" onclick="handleFiftyFifty()">
+							<img src="../images/Classic5050.png" id="fiftyFifty" height="50" width="50" alt="fifty-fifty">
+						</a>
+					</li>
+					<li class="lifeline-icon">
+						<a href="javascript:void(0)" onclick="handlePhoneFrnd()" id="phoneLink">
+							<img src="../images/phoneAFrndIcon.png" height="50" width="50" alt="phone a friend">
+						</a>
+					</li>
+					<li class="lifeline-icon">
+						<a onclick="createAudienceChart()">
+						<img src="../images/AudiencePoll.png"  id="audiencePoll" height="50" width="50" alt="audience poll">
+						</a>
+					</li>
+				</ul>
+					<ol class ="amountPointer" reversed>
+						<li id="level14">1 MILLION</li>
+						<li id="level13">500,000</li>
+						<li id="level12">250,000</li>
+						<li id="level11">100,000</li>
+						<li id="level10">50,000</li>
+						<li id="level9">25,000</li>
+						<li id="level8">16,000</li>
+						<li id="level7">8,000</li>
+						<li id="level6">4,000</li>
+						<li id="level5">2,000</li>
+						<li id="level4">1,000</li>
+						<li id="level3">500</li>
+						<li id="level2">300</li>
+						<li id="level1">200</li>
+						<li class="active" id="level0">100</li>
+					</ol>
+				
+			</div>
+		</div>
+		<div class="game-over hidden" id="gameOver">
+			<img src="../images/gameOver.jpg"> 
+		</div>
+	</body>
+	</html>
